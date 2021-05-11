@@ -2,6 +2,8 @@ console.log("Hello World");
 Time();
 var interval;
 let timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+let offset = moment(new Date()).format("ZZ");
+timezone+=" (UTC"+offset.slice(0,3)+":"+offset.slice(3)+")";
 function Time() {
     clearInterval(interval);
     document.getElementsByClassName("Stopwatch")[0].classList.add("visually-hidden");
@@ -9,18 +11,11 @@ function Time() {
     document.getElementById("Time").classList.remove("visually-hidden");
     interval = setInterval(() => {
         let date = new Date;
-        document.getElementById("timeanddate").innerHTML = date.toLocaleString('en-US', {
-            hour: 'numeric', // numeric, 2-digit
-            minute: 'numeric', // numeric, 2-digit
-            second: 'numeric', // numeric, 2-digit
-            timeZone: timezone
-        }) + "<br><h1 class=\"display-6 align-text-top\">" + date.toLocaleDateString('en-US', {
-            weekday: 'long', // long, short, narrow
-            day: 'numeric', // numeric, 2-digit
-            year: 'numeric', // numeric, 2-digit
-            month: 'long', // numeric, 2-digit, long, short, narrow
-            timeZone: timezone
-        }) + "</h1><h5>" + timezone + "</h5>"
+        let Utc = moment.utc(date).utcOffset(date.getTimezoneOffset).format('YYYY/MM/DD HH:mm:ss ZZ');
+        moment.utc(Utc).utcOffset(offset).format('dddd, MMM DD,YYYY HH:mm:ss A')
+        document.getElementById("timeanddate").innerHTML = moment.utc(Utc).utcOffset(offset).format('hh:mm:ss A')
+         + "<br><h1 class=\"display-6 align-text-top\">" + moment.utc(Utc).utcOffset(offset).format('dddd, MMM DD,YYYY')
+         + "</h1><h5>" + timezone + "</h5>"
     }, 1000);
 }
 function StopWatch() {

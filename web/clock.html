@@ -11,9 +11,10 @@
         integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
     <title>Clock</title>
     <style>
-        .scroll{
+        .scroll {
             overflow-y: scroll;
         }
+
         .scroll::-webkit-scrollbar {
             width: 3px;
         }
@@ -52,15 +53,12 @@
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Time Zones
                         </a>
-                        <ul class="dropdown-menu scroll" aria-labelledby="navbarDropdown"
-                            style="max-height: 550px; ">
-                            <li><a class="dropdown-item" href="#" onclick="timezone='UTC'">UTC Universal Coordinated
-                                    Time</a></li>
+                        <ul class="dropdown-menu scroll" aria-labelledby="navbarDropdown" style="max-height: 550px; ">
+                            <li><a class="dropdown-item" href="#" onclick="offset='+0000'; timezone='UTC Universal Coordinated Time'">UTC Universal Coordinated Time</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#" onclick="timezone='ACT'">ACT Australia Central
-                                    Time</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="offset='-1200'; timezone='BST Baker Island Time (UTC-12)'">BST Baker Island Time (UTC-12)</a></li>
                             <li><a class="dropdown-item" href="#" onclick="timezone='AET'">AET Australia Eastern
                                     Time</a></li>
                             <li><a class="dropdown-item" href="#" onclick="timezone='AGT'">AGT Argentina Standard
@@ -129,7 +127,7 @@
                         </ul>
                     </li>
                 </ul>
-                <form class="d-flex">
+                <form class="d-flex visually-hidden">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
@@ -142,26 +140,28 @@
         <p class="text-secondary">World Time. Trying to learn Bootstrap</p>
         <!-- <a class="btn btn-primary mb-3" href="#" role="button">Browse Times</a> -->
     </div>
-    <div class="Stopwatch container m-auto my-2 bg-light bg-gradient border border-2 rounded visually-hidden" style="width: 52%;"
-        >
+    <div class="Stopwatch container m-auto my-2 bg-light bg-gradient border border-2 rounded visually-hidden"
+        style="width: 52%;">
         <h1 class="display-4">Stopwatch <span class="display-6" id="stopwatch_time">00:00:00.0</span></h1>
         <a class="btn btn-primary w-25 m-3" href="#" role="button"
             onclick="initiatestopwatch(document.getElementById('initiatestopwatch').innerText == 'Start'?'start':'stop')"
             id="initiatestopwatch">Start</a>
-        <a class="btn btn-primary w-25 m-3" href="#" role="button" onclick="lap_or_resetstopwatch(document.getElementById('lap_or_reset').innerText == 'Lap'?'Lap':'Reset')" id="lap_or_reset">Lap</a>
+        <a class="btn btn-primary w-25 m-3" href="#" role="button"
+            onclick="lap_or_resetstopwatch(document.getElementById('lap_or_reset').innerText == 'Lap'?'Lap':'Reset')"
+            id="lap_or_reset">Lap</a>
     </div>
 
-    <table class="Stopwatch table table-striped w-75 m-auto">
+    <table class="Stopwatch table table-striped w-75 m-auto visually-hidden">
         <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Lap time</th>
-            <th scope="col">Overall Time</th>
-          </tr>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Lap time</th>
+                <th scope="col">Overall Time</th>
+            </tr>
         </thead>
-        <tbody id = "laps">
+        <tbody id="laps">
         </tbody>
-      </table>
+    </table>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
@@ -169,6 +169,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
         crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src=".\js\script.js"></script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
