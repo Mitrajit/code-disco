@@ -496,6 +496,7 @@
                             data-bs-toggle="dropdown">Clocks</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a href="#" class="dropdown-item" onclick="Time()">Time</a></li>
+                            <li><a href="#" class="dropdown-item" onclick="Alarm()">Alarm</a></li>
                             <li><a href="#" class="dropdown-item" onclick="StopWatch()">Stop Watch</a></li>
                             <li><a href="#" class="dropdown-item">Timer</a></li>
                         </ul>
@@ -514,6 +515,19 @@
         <p class="text-secondary">World Time. Trying to learn Bootstrap</p>
         <!-- <a class="btn btn-primary mb-3" href="#" role="button">Browse Times</a> -->
     </div>
+
+    <div class="container m-auto my-2 bg-light bg-gradient border border-2 rounded visually-hidden"
+        id="Alarm" style="width: 52%;">
+        <h1 class="display-4 d-flex">Alarm&nbsp;<span class="display-6 my-3 " id="alarm_time">
+            <time class="display-6 visually-hidden">00:00 AM</time>
+            <input type="time" class="display-6 bg-light border-0" aria-label="Time input">
+        </span></h1>
+        <h4> </h4>
+        <a class="btn btn-primary w-25 m-3" href="#" role="button"
+            onclick="initiatealarm(document.getElementById('initiatealarm').innerText == 'Set'?'set':'reset')"
+            id="initiatealarm">Set</a>
+    </div>
+
     <div class="Stopwatch container m-auto my-2 bg-light bg-gradient border border-2 rounded visually-hidden"
         style="width: 52%;">
         <h1 class="display-4">Stopwatch <span class="display-6" id="stopwatch_time">00:00:00.0</span></h1>
