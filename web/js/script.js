@@ -16,17 +16,19 @@ function Time() {
 }
 function tick(){
     time = moment.utc().utcOffset(offset);
-    document.getElementById("timeanddate").innerHTML = moment.utc().utcOffset(offset).format('hh:mm:ss A')
-     + "<br><h1 class=\"display-6 align-text-top\">" + moment.utc().utcOffset(offset).format('dddd, MMM DD,YYYY')
+    document.getElementById("timeanddate").innerHTML = time.format('hh:mm:ss A')
+     + "<br><h1 class=\"display-6 align-text-top\">" + time.format('dddd, MMM DD,YYYY')
      + "</h1><h5>" + timezone + "</h5>"
-    document.getElementById("Alarm").getElementsByTagName("h4")[0].innerText = "Current time "+moment.utc().utcOffset(offset).format('hh:mm:ss A');
+    document.getElementById("Alarm").getElementsByTagName("h4")[0].innerText = "Current time "+time.format('hh:mm:ss A');
     if(document.getElementById("initiatealarm").innerText=="Reset"){
         let thespan = document.getElementById("alarm_time");
         let alarmtime = moment(thespan.getElementsByTagName("input")[0].value,"HH:mm");
-        let T=moment.utc(moment(alarmtime,"HH:mm").diff(moment())+1000).format(" (T-HH:mm:ss)");
+        let T=moment.utc(moment(alarmtime,"HH:mm").diff(moment(time.format('hh:mm:ss A'),"hh:mm:ss A"))+1000).format(" (T-HH:mm:ss)");
         thespan.getElementsByTagName("time")[0].innerText = alarmtime.format("hh:mm A ")+T;
         if(T==" (T-00:00:00)"){
             initiatealarm("reset");
+            let alarm=new Audio("./js/analog-watch-alarm.mp3");
+            alarm.play();
             alert("Alarm !!!!");
         }
     }
