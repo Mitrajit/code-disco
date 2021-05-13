@@ -14,6 +14,11 @@ function Time() {
     tick();
     interval = setInterval(tick, 1000);
 }
+var alarm = new Audio("./js/analog-watch-alarm.mp3");
+var myModal = document.getElementById('alarmmodal');
+myModal.addEventListener('hidden.bs.modal', function (event) {
+    alarm.pause(); alarm.loop=false;
+  })
 function tick(){
     time = moment.utc().utcOffset(offset);
     document.getElementById("timeanddate").innerHTML = time.format('hh:mm:ss A')
@@ -27,9 +32,10 @@ function tick(){
         thespan.getElementsByTagName("time")[0].innerText = alarmtime.format("hh:mm A ")+T;
         if(T==" (T-00:00:00)"){
             initiatealarm("reset");
-            let alarm=new Audio("./js/analog-watch-alarm.mp3");
+            alarm.currentTime=0;
+            alarm.loop=true;
             alarm.play();
-            alert("Alarm !!!!");
+            new bootstrap.Modal(myModal).toggle();
         }
     }
 }

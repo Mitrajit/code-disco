@@ -518,15 +518,33 @@
 
     <div class="container m-auto my-2 bg-light bg-gradient border border-2 rounded visually-hidden"
         id="Alarm" style="width: 52%;">
-        <h1 class="display-4 d-flex">Alarm&nbsp;<span class="display-6 my-3 " id="alarm_time">
+        <div class="display-4 d-flex">Alarm&nbsp;<div class="display-6 p-1 mt-auto" id="alarm_time">
             <time class="display-6 visually-hidden">00:00 AM</time>
             <input type="time" class="display-6 bg-light border-0" aria-label="Time input">
-        </span></h1>
+        </div></div>
         <h4> </h4>
         <a class="btn btn-primary w-25 m-3" href="#" role="button"
             onclick="initiatealarm(document.getElementById('initiatealarm').innerText == 'Set'?'set':'reset')"
             id="initiatealarm">Set</a>
     </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="alarmmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Alarm</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Alarm is ringing.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
     <div class="Stopwatch container m-auto my-2 bg-light bg-gradient border border-2 rounded visually-hidden"
         style="width: 52%;">
